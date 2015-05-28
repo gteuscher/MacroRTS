@@ -1,0 +1,54 @@
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\MacroRTS.exe
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\MacroRTS.pdb
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\MonoGame.Framework.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XAudio2.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D11.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.DXGI.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct2D1.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XInput.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.RawInput.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D9.dll
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\MonoGame.Framework.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XAudio2.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D11.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.DXGI.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct2D1.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XInput.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.RawInput.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D9.xml
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.csprojResolveAssemblyReference.cache
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.exe
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.pdb
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\Content\tower.png
+c:\users\gregory\documents\visual studio 2015\Projects\MacroRTS\MacroRTS\bin\Windows\Debug\Content\blank.png
+D:\GameDev\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.exe
+D:\GameDev\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.pdb
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\Content\blank.png
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\Content\tower.png
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\MacroRTS.exe
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\MacroRTS.pdb
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\MonoGame.Framework.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XAudio2.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D11.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.DXGI.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct2D1.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XInput.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.RawInput.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D9.dll
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\MonoGame.Framework.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XAudio2.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D11.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.DXGI.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct2D1.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XInput.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.RawInput.xml
+D:\GameDev\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D9.xml
+D:\GameDev\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.csprojResolveAssemblyReference.cache
