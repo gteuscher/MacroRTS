@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,20 +13,23 @@ namespace MacroRTS
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         private Texture2D[] bgTextures;
-
         private Tile[,] gameboard;
-
         private Random random = new Random();
+
+        private Vector2 mouseLocation;
+        private MouseState oldMouseState;
+
+        private Texture2D selectedBuilding;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             bgTextures = new Texture2D[2];
-            gameboard = new Tile[3, 3];
-            
+            gameboard = new Tile[7, 4];
+            graphics.PreferredBackBufferWidth = 896;
+            graphics.PreferredBackBufferHeight = 512;
         }
 
         /// <summary>
@@ -36,17 +40,15 @@ namespace MacroRTS
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
 
             base.Initialize();
-
+            IsMouseVisible = true;
             for (int i = 0; i < gameboard.GetLength(0); i++)
             {
                 for (int j = 0; j< gameboard.GetLength(1); j++)
                 {
-                    int r = random.Next(0, bgTextures.Length);
-                    gameboard[i, j] = new Tile(bgTextures[r]);
-                    gameboard[i, j].pos = new Vector2(i * 128, j * 128);
+                    gameboard[i, j] = new Tile(bgTextures[0]);
+                    gameboard[i, j].pos = new Vector2(i * gameboard[i,j].size, j * gameboard[i, j].size);
                 }
             }
         }
@@ -60,9 +62,12 @@ namespace MacroRTS
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             bgTextures[0] = Content.Load<Texture2D>("blank");
             bgTextures[1] = Content.Load<Texture2D>("tower");
+
+            //TODO: Make this based on some selectable options
+            selectedBuilding = bgTextures[1];
+
         }
 
         /// <summary>
@@ -84,8 +89,20 @@ namespace MacroRTS
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            MouseState mouseState = Mouse.GetState();
+            mouseLocation.X = mouseState.X;
+            mouseLocation.Y = mouseState.Y;
 
+            if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != mouseState.LeftButton)
+            {
+                foreach (Tile t in gameboard) {
+                    if (t.GetCoords().Contains(mouseState.X, mouseState.Y)) {
+                        t.tileTexture = selectedBuilding;
+                    } 
+                }
+            }
+
+            oldMouseState = Mouse.GetState();
             base.Update(gameTime);
         }
 

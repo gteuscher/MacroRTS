@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using System.Diagnostics;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace MacroRTS
 {
@@ -7,6 +9,7 @@ namespace MacroRTS
     {
         public Texture2D tileTexture;
         public Vector2 pos;
+        public int size = 128;
 
         public Tile(Texture2D tileTexture)
         {
@@ -17,6 +20,14 @@ namespace MacroRTS
         {
             s.Draw(tileTexture, pos, Color.White);
         }
+
+        public Rectangle GetCoords()
+        {
+            Rectangle tileLoc = new Rectangle((int)pos.X, (int)pos.Y, size, size);
+
+            return tileLoc;
+        }
+
 
     }
 }
