@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+
+namespace MacroRTS
+{
+    class Tower : Tile
+    {
+        public Tower(Texture2D tileTexture): base (tileTexture)
+        {
+            
+        }
+    }
+}
