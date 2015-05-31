@@ -47,6 +47,7 @@ namespace MacroRTS
             {
                 for (int j = 0; j< gameboard.GetLength(1); j++)
                 {
+                    //TODO: Default loading should use tile, not tower
                     gameboard[i, j] = new Tower(bgTextures[0], bgTextures[0]);
                     gameboard[i, j].pos = new Vector2(i * gameboard[i,j].size, j * gameboard[i, j].size);
                 }
