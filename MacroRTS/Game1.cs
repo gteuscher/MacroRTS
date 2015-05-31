@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,8 +18,8 @@ namespace MacroRTS
         public Texture2D animTexture;
         private Tower[,] gameboard;
         private Random random = new Random();
-        private Unit u;
-
+        private List<Unit> u;
+        
         private Vector2 mouseLocation;
         private MouseState oldMouseState;
 
@@ -32,6 +33,7 @@ namespace MacroRTS
             gameboard = new Tower[7, 4];
             graphics.PreferredBackBufferWidth = 896;
             graphics.PreferredBackBufferHeight = 512;
+            u = new List<Unit>();
         }
 
         /// <summary>
@@ -54,8 +56,6 @@ namespace MacroRTS
                     gameboard[i, j].pos = new Vector2(i * gameboard[i,j].size, j * gameboard[i, j].size);
                 }
             }
-
-            u = new Unit(animTexture);
         }
 
         /// <summary>
@@ -123,10 +123,15 @@ namespace MacroRTS
                             }
                             
                         }
-                    }
-
-                        
+                    }                        
                 }
+            }
+
+            if (mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton != mouseState.RightButton)
+            {
+                Unit tempUnit = new Unit(animTexture);
+                tempUnit.pos = new Vector2(mouseState.X, mouseState.Y);
+                u.Add(tempUnit);
             }
 
             oldMouseState = Mouse.GetState();
@@ -151,7 +156,14 @@ namespace MacroRTS
                     gameboard[i, j].Draw(spriteBatch);
                 }
             }
-            u.Draw(spriteBatch, gameTime);
+
+            for(int i = 0; i < u.Count; i++)
+            {
+                if(u[i] != null) { 
+                    u[i].Draw(spriteBatch, gameTime);
+                }
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);

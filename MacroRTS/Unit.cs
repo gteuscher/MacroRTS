@@ -13,7 +13,7 @@ namespace MacroRTS
         //animation
         public Texture2D spriteSheet;
         private float time;
-        private float frameTime = 0.1f;
+        private float frameTime = 0.2f;
         int frameIndex;
         const int totalFrames = 5;
         private int frameHeight = 30;
@@ -25,6 +25,7 @@ namespace MacroRTS
         public Unit(Texture2D u)
         {
             spriteSheet = u;
+            pos = new Vector2(-100, -100);
         }
 
         public void Draw(SpriteBatch s, GameTime g)
@@ -38,10 +39,9 @@ namespace MacroRTS
             }
             if (frameIndex > totalFrames) frameIndex = 1;
             Rectangle source = new Rectangle(frameIndex * frameWidth, 0, frameWidth, frameHeight);
-            Vector2 position = new Vector2(100 / 2, 100 / 2);
             Vector2 origin = new Vector2(frameWidth / 2.0f, frameHeight);
 
-            s.Draw(spriteSheet, position, source, Color.White, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
+            s.Draw(spriteSheet, pos, source, Color.White, 0.0f, origin, 1.0f, SpriteEffects.None, 0.0f);
         }
 
         public Rectangle GetCoords()
