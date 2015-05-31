@@ -14,7 +14,7 @@ namespace MacroRTS
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Texture2D[] bgTextures;
-        private Tile[,] gameboard;
+        private Tower[,] gameboard;
         private Random random = new Random();
 
         private Vector2 mouseLocation;
@@ -27,7 +27,7 @@ namespace MacroRTS
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             bgTextures = new Texture2D[2];
-            gameboard = new Tile[7, 4];
+            gameboard = new Tower[7, 4];
             graphics.PreferredBackBufferWidth = 896;
             graphics.PreferredBackBufferHeight = 512;
         }
@@ -47,7 +47,7 @@ namespace MacroRTS
             {
                 for (int j = 0; j< gameboard.GetLength(1); j++)
                 {
-                    gameboard[i, j] = new Tile(bgTextures[0]);
+                    gameboard[i, j] = new Tower(bgTextures[0], bgTextures[0]);
                     gameboard[i, j].pos = new Vector2(i * gameboard[i,j].size, j * gameboard[i, j].size);
                 }
             }
@@ -95,10 +95,30 @@ namespace MacroRTS
 
             if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != mouseState.LeftButton)
             {
-                foreach (Tile t in gameboard) {
-                    if (t.GetCoords().Contains(mouseState.X, mouseState.Y)) {
-                        t.tileTexture = selectedBuilding;
-                    } 
+
+                for (int i = 0; i < gameboard.GetLength(0); i++)
+                {
+                    for (int j = 0; j < gameboard.GetLength(1); j++)
+                    {
+                        Tower t = gameboard[i, j];
+                        if (t.GetCoords().Contains(mouseState.X, mouseState.Y))
+                        {
+                            //test condition for damage
+                            if (t.IsAlive())
+                            {
+                                t.Damage(8);
+                            } else
+                            {
+                                Tower tow = new Tower(selectedBuilding, bgTextures[0]);
+                                tow.pos = new Vector2(t.GetCoords().X, t.GetCoords().Y);
+                                tow.Init(100, 50);
+                                gameboard[i, j] = tow;
+                            }
+                            
+                        }
+                    }
+
+                        
                 }
             }
 
