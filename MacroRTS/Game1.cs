@@ -14,8 +14,10 @@ namespace MacroRTS
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Texture2D[] bgTextures;
+        public Texture2D animTexture;
         private Tower[,] gameboard;
         private Random random = new Random();
+        private Unit u;
 
         private Vector2 mouseLocation;
         private MouseState oldMouseState;
@@ -52,6 +54,8 @@ namespace MacroRTS
                     gameboard[i, j].pos = new Vector2(i * gameboard[i,j].size, j * gameboard[i, j].size);
                 }
             }
+
+            u = new Unit(animTexture);
         }
 
         /// <summary>
@@ -63,11 +67,13 @@ namespace MacroRTS
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            animTexture = Content.Load<Texture2D>("walking");
             bgTextures[0] = Content.Load<Texture2D>("blank");
             bgTextures[1] = Content.Load<Texture2D>("tower");
 
             //TODO: Make this based on some selectable options
             selectedBuilding = bgTextures[1];
+
 
         }
 
@@ -145,7 +151,7 @@ namespace MacroRTS
                     gameboard[i, j].Draw(spriteBatch);
                 }
             }
-
+            u.Draw(spriteBatch, gameTime);
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -7,13 +7,14 @@ namespace MacroRTS
 {
     class Tile
     {
+        //use public vs setter/getter on texture?
         public Texture2D tileTexture;
         public Vector2 pos;
         public int size = 128;
 
-        public Tile(Texture2D tileTexture)
+        public Tile(Texture2D t)
         {
-            this.tileTexture = tileTexture;
+            tileTexture = t;
         }
 
         public void Draw(SpriteBatch s)

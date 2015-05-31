@@ -79,3 +79,4 @@ D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.XInput.xml
 D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.RawInput.xml
 D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\SharpDX.Direct3D9.xml
 D:\GameDev\RTS\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.csprojResolveAssemblyReference.cache
+D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\Content\walking.png
