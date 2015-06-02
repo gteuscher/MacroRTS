@@ -19,6 +19,7 @@ namespace MacroRTS
         private Tower[,] gameboard;
         private Random random = new Random();
         private List<Unit> u;
+        private List<Vector2> towerPosition;
         
         private Vector2 mouseLocation;
         private MouseState oldMouseState;
@@ -34,6 +35,7 @@ namespace MacroRTS
             graphics.PreferredBackBufferWidth = 896;
             graphics.PreferredBackBufferHeight = 512;
             u = new List<Unit>();
+            towerPosition = new List<Vector2>();
         }
 
         /// <summary>
@@ -116,9 +118,12 @@ namespace MacroRTS
                                 t.Damage(8);
                             } else
                             {
+                                
                                 Tower tow = new Tower(selectedBuilding, bgTextures[0]);
                                 tow.pos = new Vector2(t.GetCoords().X, t.GetCoords().Y);
+                                Vector2 towerPositionForPathfinding = new Vector2(t.GetCoords().X + (tow.size/2), t.GetCoords().Y + (tow.size / 2));
                                 tow.Init(100, 50);
+                                towerPosition.Add(towerPositionForPathfinding);
                                 gameboard[i, j] = tow;
                             }
                             
@@ -130,7 +135,10 @@ namespace MacroRTS
             if (mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton != mouseState.RightButton)
             {
                 Unit tempUnit = new Unit(animTexture);
+                Vector2 nearestLoc = new Vector2();
                 tempUnit.pos = new Vector2(mouseState.X, mouseState.Y);
+                nearestLoc = tempUnit.FindNearestTower(towerPosition);
+                Debug.WriteLine(nearestLoc.ToString());
                 u.Add(tempUnit);
             }
 

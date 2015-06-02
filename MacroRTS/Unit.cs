@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace MacroRTS
 {
     //TODO: Create unit with its own draw method and genericize later.
@@ -52,7 +53,22 @@ namespace MacroRTS
         }
 
         public Vector2 FindNearestTower(List<Vector2> tl) {
-            //TODO: add function to find nearest tower from list of towers.
+            Vector2 nearestPos = new Vector2();
+            float prevDistance = 0.0f;
+            float thisDistance = 0.0f;
+            foreach(Vector2 t in tl)
+            {
+                thisDistance = Vector2.Distance(pos,t);
+
+                if (thisDistance < prevDistance || prevDistance == 0.0f)
+                {
+                    nearestPos = t;
+                }
+
+                prevDistance = thisDistance;
+            }
+
+            return nearestPos;
         }
     }
 }
