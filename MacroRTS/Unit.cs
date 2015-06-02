@@ -50,5 +50,9 @@ namespace MacroRTS
 
             return tileLoc;
         }
+
+        public Vector2 FindNearestTower(List<Vector2> tl) {
+            //TODO: add function to find nearest tower from list of towers.
+        }
     }
 }
