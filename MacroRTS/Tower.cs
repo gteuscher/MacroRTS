@@ -13,6 +13,7 @@ namespace MacroRTS
         public int healthTotal;
         public int shieldTotal;
         public Vector2 pathfindingPos;
+        public bool isAlive = true;
 
         public Tower(Texture2D tileTexture, Texture2D destroyedTower): base (tileTexture)
         {
@@ -28,21 +29,18 @@ namespace MacroRTS
             shield = s;
         }
 
-        public void Damage(int d)
+        public bool Damage(int d)
         {
             int rd = DamageShield(d);
             DamageHealth(rd);
-            Debug.WriteLine("Damage: " + d.ToString() + " Shield: " + shield.ToString() + " Health: " + health.ToString());         
-        }
-
-        public bool IsAlive()
-        {
-            if (health > 0)
+            if (health <= 0)
             {
-                return true;
+                isAlive = false;
             }
-            return false;
-            
+
+            Debug.WriteLine("Damage: " + d.ToString() + " Shield: " + shield.ToString() + " Health: " + health.ToString() + " Is Alive: " + isAlive);
+            return isAlive;
+
         }
 
         private int DamageShield(int d)

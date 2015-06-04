@@ -16,6 +16,7 @@ namespace MacroRTS
         SpriteBatch spriteBatch;
         private Texture2D[] bgTextures;
         public Texture2D animTexture;
+        public Texture2D attackTexture;
         private Tower[,] gameboard;
         private Random random = new Random();
         private List<Unit> u;
@@ -70,6 +71,8 @@ namespace MacroRTS
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             animTexture = Content.Load<Texture2D>("walking");
+            //TODO: Fix this texture and load into animation array
+            attackTexture = Content.Load<Texture2D>("attacking");
             bgTextures[0] = Content.Load<Texture2D>("blank");
             bgTextures[1] = Content.Load<Texture2D>("tower");
 
@@ -112,21 +115,13 @@ namespace MacroRTS
                         Tower t = gameboard[i, j];
                         if (t.GetCoords().Contains(mouseState.X, mouseState.Y))
                         {
-                            //test condition for damage
-                            if (t.IsAlive())
-                            {
-                                t.Damage(8);
-                            } else
-                            {
-                                Tower tow = new Tower(selectedBuilding, bgTextures[0]);
-                                tow.pos = new Vector2(t.GetCoords().X, t.GetCoords().Y);
-                                Vector2 towerPositionForPathfinding = new Vector2(t.GetCoords().X + (tow.size/2), t.GetCoords().Y + (tow.size / 2));
-                                tow.Init(100, 50);
-                                tow.pathfindingPos = towerPositionForPathfinding;
-                                towerPosition.Add(towerPositionForPathfinding);
-                                gameboard[i, j] = tow;
-                            }
-                            
+                            Tower tow = new Tower(selectedBuilding, bgTextures[0]);
+                            tow.pos = new Vector2(t.GetCoords().X, t.GetCoords().Y);
+                            Vector2 towerPositionForPathfinding = new Vector2(t.GetCoords().X + (tow.size/2), t.GetCoords().Y + (tow.size / 2));
+                            tow.Init(100, 50);
+                            tow.pathfindingPos = towerPositionForPathfinding;
+                            towerPosition.Add(towerPositionForPathfinding);
+                            gameboard[i, j] = tow;   
                         }
                     }                        
                 }
@@ -135,18 +130,20 @@ namespace MacroRTS
             if (mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton != mouseState.RightButton)
             {
                 Unit tempUnit = new Unit(animTexture);
-                Vector2 nearestLoc = new Vector2();
                 tempUnit.pos = new Vector2(mouseState.X, mouseState.Y);
-                nearestLoc = tempUnit.FindNearestTower(towerPosition);
-                tempUnit.nearestTower = nearestLoc;
                 u.Add(tempUnit);
             }
 
+            //unit update management
             foreach (Unit un in u) {
                 //find my tower
                 if(un.myTower == null)
-                { 
-                    foreach(Tower t in gameboard)
+                {
+                    Vector2 nearestLoc = new Vector2();
+                    nearestLoc = un.FindNearestTower(towerPosition);
+                    un.nearestTower = nearestLoc;
+                    Debug.Write(nearestLoc);
+                    foreach (Tower t in gameboard)
                     {
                         if (un.nearestTower == t.pathfindingPos)
                         {
@@ -155,7 +152,16 @@ namespace MacroRTS
                     }
                 }
                 un.MoveToTower(75);
-                un.AttackTower(gameTime);
+                un.AttackTower(gameTime, attackTexture, animTexture);
+            }
+
+            //tower update management
+            foreach(Tower t in gameboard)
+            {
+                if(t.isAlive == false)
+                {
+                    towerPosition.Remove(new Vector2(t.GetCoords().X + (t.size / 2), t.GetCoords().Y + (t.size / 2)));
+                }
             }
 
             oldMouseState = Mouse.GetState();

@@ -6,7 +6,6 @@ using System.Diagnostics;
 
 namespace MacroRTS
 {
-    //TODO: Create unit with its own draw method and genericize later.
     class Unit
     {
         //animation
@@ -14,10 +13,10 @@ namespace MacroRTS
         private float time;
         private float frameTime = 0.2f;
         int frameIndex;
-        const int totalFrames = 5;
+        private int totalFrames = 5;
         private int frameHeight = 30;
         private int frameWidth = 30;
-        public int damage = 6;
+        public int damage = 25;
 
         double attackSpeed = 1000;
 
@@ -45,7 +44,6 @@ namespace MacroRTS
                 time = 0f;
             }
             if (frameIndex > totalFrames) frameIndex = 1;
-            if (moving == false) frameIndex = 1;
             Rectangle source = new Rectangle(frameIndex * frameWidth, 0, frameWidth, frameHeight);
             Vector2 origin = new Vector2(frameWidth / 2.0f, frameHeight);
 
@@ -83,7 +81,7 @@ namespace MacroRTS
 
         public void MoveToTower(float speed)
         {
-            if (moving == true)
+            if (moving == true && nearestTower != new Vector2(0,0))
             {
                 Vector2 end = new Vector2(nearestTower.X + 25, nearestTower.Y + 20);
                 Vector2 start = pos;
@@ -93,20 +91,40 @@ namespace MacroRTS
                 if (Vector2.Distance(start, this.pos) >= Vector2.Distance(start, end))
                 {
                     moving = false;
-                    //TODO: determine which tower the unit is attacking
                     attacking = true;
                 }
+            } 
+
+            if(nearestTower == new Vector2(0, 0))
+            {
+                myTower = null;
             }
         }
 
-        public void AttackTower(GameTime gt)
+        public void AttackTower(GameTime gt, Texture2D at, Texture2D ot)
         {
-            
+            bool isAlive=true;
             attackSpeed -= gt.ElapsedGameTime.TotalMilliseconds;
-            if(attacking == true && attackSpeed<= 0)
+            if(attacking == true && attackSpeed<= 0 && isAlive == true)
             {
-                myTower.Damage(damage);
+                spriteSheet = at;
+                totalFrames = 3;
+                frameHeight = 34;
+                frameWidth = 40;
+
+                isAlive = myTower.Damage(damage);
                 attackSpeed = 1000;
+            } 
+
+            if(isAlive == false)
+            {
+                attacking = false;
+                moving = true;
+                spriteSheet = ot;
+                totalFrames = 5;
+                frameHeight = 30;
+                frameWidth = 30;
+                myTower = null;
             }
         }
     }
