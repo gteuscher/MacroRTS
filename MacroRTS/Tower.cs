@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
@@ -11,6 +12,7 @@ namespace MacroRTS
         public int shield;
         public int healthTotal;
         public int shieldTotal;
+        public Vector2 pathfindingPos;
 
         public Tower(Texture2D tileTexture, Texture2D destroyedTower): base (tileTexture)
         {

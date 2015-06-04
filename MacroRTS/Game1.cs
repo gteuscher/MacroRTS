@@ -118,11 +118,11 @@ namespace MacroRTS
                                 t.Damage(8);
                             } else
                             {
-                                
                                 Tower tow = new Tower(selectedBuilding, bgTextures[0]);
                                 tow.pos = new Vector2(t.GetCoords().X, t.GetCoords().Y);
                                 Vector2 towerPositionForPathfinding = new Vector2(t.GetCoords().X + (tow.size/2), t.GetCoords().Y + (tow.size / 2));
                                 tow.Init(100, 50);
+                                tow.pathfindingPos = towerPositionForPathfinding;
                                 towerPosition.Add(towerPositionForPathfinding);
                                 gameboard[i, j] = tow;
                             }
@@ -138,8 +138,24 @@ namespace MacroRTS
                 Vector2 nearestLoc = new Vector2();
                 tempUnit.pos = new Vector2(mouseState.X, mouseState.Y);
                 nearestLoc = tempUnit.FindNearestTower(towerPosition);
-                Debug.WriteLine(nearestLoc.ToString());
+                tempUnit.nearestTower = nearestLoc;
                 u.Add(tempUnit);
+            }
+
+            foreach (Unit un in u) {
+                //find my tower
+                if(un.myTower == null)
+                { 
+                    foreach(Tower t in gameboard)
+                    {
+                        if (un.nearestTower == t.pathfindingPos)
+                        {
+                            un.myTower = t;
+                        }
+                    }
+                }
+                un.MoveToTower(75);
+                un.AttackTower(gameTime);
             }
 
             oldMouseState = Mouse.GetState();
