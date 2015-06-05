@@ -74,7 +74,6 @@ namespace MacroRTS
                 prevDistance = thisDistance;
             }
 
-            Debug.WriteLine(nearestPos);
             nearestTower = nearestPos;
             return nearestPos;
         }

@@ -81,3 +81,4 @@ D:\GameDev\RTS\MacroRTS\MacroRTS\obj\x86\Debug\MacroRTS.csprojResolveAssemblyRef
 D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\Content\walking.png
 D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\Content\attacking.png
 D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\Content\blank.png
+D:\GameDev\RTS\MacroRTS\MacroRTS\bin\Windows\Debug\Content\walking-right.png

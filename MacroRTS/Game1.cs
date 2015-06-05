@@ -15,7 +15,7 @@ namespace MacroRTS
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Texture2D[] bgTextures;
-        public Texture2D animTexture;
+        public Texture2D[] animTexture;
         public Texture2D attackTexture;
         private Tower[,] gameboard;
         private Random random = new Random();
@@ -31,6 +31,7 @@ namespace MacroRTS
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            animTexture = new Texture2D[2];
             bgTextures = new Texture2D[2];
             gameboard = new Tower[7, 4];
             graphics.PreferredBackBufferWidth = 896;
@@ -70,7 +71,8 @@ namespace MacroRTS
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            animTexture = Content.Load<Texture2D>("walking");
+            animTexture[0] = Content.Load<Texture2D>("walking");
+            animTexture[1] = Content.Load<Texture2D>("walking-right");
             //TODO: Fix this texture and load into animation array
             attackTexture = Content.Load<Texture2D>("attacking");
             bgTextures[0] = Content.Load<Texture2D>("blank");
@@ -129,7 +131,7 @@ namespace MacroRTS
 
             if (mouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton != mouseState.RightButton)
             {
-                Unit tempUnit = new Unit(animTexture);
+                Unit tempUnit = new Unit(animTexture[0]);
                 tempUnit.pos = new Vector2(mouseState.X, mouseState.Y);
                 u.Add(tempUnit);
             }
@@ -142,7 +144,13 @@ namespace MacroRTS
                     Vector2 nearestLoc = new Vector2();
                     nearestLoc = un.FindNearestTower(towerPosition);
                     un.nearestTower = nearestLoc;
-                    Debug.Write(nearestLoc);
+                    if(nearestLoc.X > un.pos.X)
+                    {
+                        un.spriteSheet = animTexture[1];
+                    } else
+                    {
+                        un.spriteSheet = animTexture[0];
+                    }
                     foreach (Tower t in gameboard)
                     {
                         if (un.nearestTower == t.pathfindingPos)
@@ -152,7 +160,7 @@ namespace MacroRTS
                     }
                 }
                 un.MoveToTower(75);
-                un.AttackTower(gameTime, attackTexture, animTexture);
+                un.AttackTower(gameTime, attackTexture, animTexture[0]);
             }
 
             //tower update management
