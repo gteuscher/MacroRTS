@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace MacroRTS
 {
@@ -99,9 +100,6 @@ namespace MacroRTS
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             MouseState mouseState = Mouse.GetState();
             mouseLocation.X = mouseState.X;
             mouseLocation.Y = mouseState.Y;
@@ -168,6 +166,14 @@ namespace MacroRTS
                 if(t.isAlive == false)
                 {
                     towerPosition.Remove(new Vector2(t.GetCoords().X + (t.size / 2), t.GetCoords().Y + (t.size / 2)));
+                }
+                t.spawnSpeed -= gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (t.spawnSpeed <= 0 && t.isAlive == true)
+                {
+                    Unit tempUnit= t.spawnUnit(animTexture[0]);
+                    u.Add(tempUnit);
+                    t.spawnSpeed = 10000;
+                    //temp reset unit to spawn in 10 sec
                 }
             }
 

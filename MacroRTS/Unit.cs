@@ -21,6 +21,7 @@ namespace MacroRTS
 
         public Vector2 pos;
         public Vector2 nearestTower;
+        public Vector2 ignoredTower;
         private int size = 30;
         bool moving = true;
         bool attacking = false;
@@ -63,19 +64,23 @@ namespace MacroRTS
             float thisDistance = 0.0f;
             foreach (Vector2 t in tl)
             {
-                thisDistance = Vector2.Distance(pos, t);
+                if (t != ignoredTower)
+                { 
+                    thisDistance = Vector2.Distance(pos, t);
 
-                if (thisDistance < prevDistance || prevDistance == 0.0f)
-                {
-                    nearestPos = t;
+                    if (thisDistance < prevDistance || prevDistance == 0.0f)
+                    {
+                        nearestPos = t;
+                    }
+
+                    prevDistance = thisDistance;
                 }
-
-                prevDistance = thisDistance;
             }
 
             nearestTower = nearestPos;
             return nearestPos;
         }
+
 
         public void MoveToTower(float speed)
         {

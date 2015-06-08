@@ -13,7 +13,9 @@ namespace MacroRTS
         public int healthTotal;
         public int shieldTotal;
         public Vector2 pathfindingPos;
-        public bool isAlive = true;
+        public bool isAlive = false;
+        //temporary spawn unit every 10 secs
+        public double spawnSpeed = 10000;
 
         public Tower(Texture2D tileTexture, Texture2D destroyedTower): base (tileTexture)
         {
@@ -27,6 +29,7 @@ namespace MacroRTS
             shieldTotal = s;
             health = h;
             shield = s;
+            isAlive = true;
         }
 
         public bool Damage(int d)
@@ -77,6 +80,15 @@ namespace MacroRTS
         {
             //hardcode destroyed tower
             this.tileTexture = destroyedTower;
+        }
+
+        public Unit spawnUnit(Texture2D dt)
+        {
+            Unit u = new Unit(dt);
+            u.pos = this.pathfindingPos;
+            //do not attack your own towers
+            u.ignoredTower = this.pathfindingPos;
+            return u;
         }
     }
 }
