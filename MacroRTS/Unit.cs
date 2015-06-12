@@ -116,7 +116,7 @@ namespace MacroRTS
                 frameWidth = 40;
 
                 isAlive = myTower.Damage(damage);
-                attackSpeed = 1000;
+                attackSpeed = 2000;
             } 
 
             if(isAlive == false)
